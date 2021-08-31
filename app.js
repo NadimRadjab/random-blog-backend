@@ -5,6 +5,10 @@ const app = express();
 
 const db = "mongodb://localhost:27017/blog-api";
 
+const postsRouter = require("./routes/api/posts");
+const authRouter = require("./routes/api/auth");
+const commentRouter = require("./routes/api/comments");
+
 mongoose
   .connect(db, {
     useNewUrlParser: true,
@@ -19,6 +23,10 @@ mongoose
   });
 
 app.use(express.json());
+
+app.use("/api/posts", postsRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/posts", commentRouter);
 
 const port = process.env.PORT || 5000;
 

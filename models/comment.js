@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
-  authorName: {
+  authorname: {
     type: String,
     required: true,
   },
@@ -16,4 +16,4 @@ const CommentSchema = new Schema({
   },
 });
 
-module.exports = mongoose("Comment", CommentSchema);
+module.exports = mongoose.model("Comment", CommentSchema);
