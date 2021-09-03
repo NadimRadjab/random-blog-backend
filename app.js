@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const cors = require("cors");
 const app = express();
 
 const db = "mongodb://localhost:27017/blog-api";
@@ -8,6 +9,7 @@ const db = "mongodb://localhost:27017/blog-api";
 const postsRouter = require("./routes/api/posts");
 const authRouter = require("./routes/api/auth");
 const commentRouter = require("./routes/api/comments");
+const userRouter = require("./routes/api/user");
 
 mongoose
   .connect(db, {
@@ -24,9 +26,10 @@ mongoose
 
 app.use(express.json());
 
-app.use("/api/posts", postsRouter);
+app.use("/api/posts", cors(), postsRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/posts", commentRouter);
+app.use("/api/user", userRouter);
 
 const port = process.env.PORT || 5000;
 
