@@ -5,7 +5,7 @@ const auth = require("../../middleware/auth");
 
 //Get
 router.get("/", async (req, res) => {
-  const posts = await Post.find({});
+  const posts = await Post.find({}).populate("author");
   res.json(posts);
 });
 

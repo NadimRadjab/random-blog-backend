@@ -1,10 +1,15 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const express = require("express");
 const mongoose = require("mongoose");
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
 
 const cors = require("cors");
 const app = express();
 
-const db = "mongodb://localhost:27017/blog-api";
+const db = process.env.DB_URL;
 
 const postsRouter = require("./routes/api/posts");
 const authRouter = require("./routes/api/auth");
@@ -25,11 +30,13 @@ mongoose
   });
 
 app.use(express.json());
+app.use(helmet());
+app.use(mongoSanitize());
 
 app.use("/api/posts", cors(), postsRouter);
-app.use("/api/auth", authRouter);
+app.use("/api/auth", cors(), authRouter);
 app.use("/api/posts", commentRouter);
-app.use("/api/user", userRouter);
+app.use("/api/user", cors(), userRouter);
 
 const port = process.env.PORT || 5000;
 

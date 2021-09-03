@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../../models/post");
 const Comment = require("../../models/comment");
+const auth = require("../../middleware/auth");
 
 //Create a comment
 router.post("/:id/comments", async (req, res) => {
@@ -15,7 +16,7 @@ router.post("/:id/comments", async (req, res) => {
 });
 
 //Delete a comment
-router.delete("/:id/comments/:commentId", async (req, res) => {
+router.delete("/:id/comments/:commentId", auth, async (req, res) => {
   const { id, commentId } = req.params;
   try {
     await Post.findByIdAndUpdate(id, { $pull: { comments: commentId } });
