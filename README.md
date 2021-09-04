@@ -2,7 +2,7 @@
 
 Back-end Repo for Random Blog project.
 
-Visit the Blog client repo [here.]()
+Visit the Blog client repo [here.](https://github.com/NadimRadjab/random-blog-client)
 
 Visit the Blog admin repo [here.](https://github.com/NadimRadjab/random-blog-admin)
 
