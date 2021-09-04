@@ -1,9 +1,9 @@
-# BlogApi
+# Random Blog
 
-Backend Repo for BlogApi project.
+Back-end Repo for Random Blog project.
 
-[Client site]()
-[Admin site]()
+Visit the Blog client repo [here.]()
+Visit the Blog admin repo [here.]()
 
 ## How To Run:
 

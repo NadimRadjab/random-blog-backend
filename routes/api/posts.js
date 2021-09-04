@@ -12,9 +12,13 @@ router.get("/", async (req, res) => {
 //Get single Post
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const post = await Post.findById(id).populate("comments");
-  if (!post) res.status(404).json({ msg: "Post does not exist!" });
-  res.json(post);
+  try {
+    const post = await Post.findById(id).populate("comments");
+    if (!post) res.status(404).json({ msg: "Post does not exist!" });
+    res.json(post);
+  } catch (err) {
+    console.log(err);
+  }
 });
 //Create
 router.post("/", auth, async (req, res) => {
